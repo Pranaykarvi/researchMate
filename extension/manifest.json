@@ -1,0 +1,44 @@
+{
+    "manifest_version": 3,
+    "name": "ResearchMate",
+    "version": "1.0.0",
+    "description": "AI-powered research assistant for understanding academic papers and articles",
+    "permissions": [
+      "storage",
+      "contextMenus",
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "http://localhost:8000/*",
+      "https://your-backend-domain.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["styles.css"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "ResearchMate"
+    },
+    "commands": {
+      "open-chatbot": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+E"
+        },
+        "description": "Open ResearchMate chatbot"
+      }
+    },
+    "icons": {
+      "16": "icons/icon16.jpg",
+      "32": "icons/icon32.jpg",
+      "48": "icons/icon48.jpg",
+      "128": "icons/icon128.jpg"
+    }
+  }

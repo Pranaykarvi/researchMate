@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchMate</title>
+    <style>
+        body {
+            width: 350px;
+            height: 500px;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 8px 0 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: #1a73e8;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .feature-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .quick-actions {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .quick-actions h3 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #1565c0;
+        }
+
+        .action-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-btn.secondary {
+            background: #f1f3f4;
+            color: #1a73e8;
+        }
+
+        .action-btn.secondary:hover {
+            background: #e8eaed;
+        }
+
+        .stats {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .stats h3 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .shortcuts {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .shortcuts h3 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .shortcut-key {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔬 ResearchMate</h1>
+        <p>AI-Powered Research Assistant</p>
+    </div>
+
+    <div class="content">
+        <div class="feature-grid">
+            <div class="feature-card" onclick="openChatbot()">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">Chat</div>
+                <div class="feature-desc">Ask questions about research</div>
+            </div>
+            <div class="feature-card" onclick="showInstructions()">
+                <div class="feature-icon">📝</div>
+                <div class="feature-title">Explain</div>
+                <div class="feature-desc">Select text & right-click</div>
+            </div>
+            <div class="feature-card" onclick="viewHistory()">
+                <div class="feature-icon">📚</div>
+                <div class="feature-title">History</div>
+                <div class="feature-desc">View past interactions</div>
+            </div>
+            <div class="feature-card" onclick="openSettings()">
+                <div class="feature-icon">⚙️</div>
+                <div class="feature-title">Settings</div>
+                <div class="feature-desc">Configure preferences</div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <button class="action-btn" onclick="openChatbot()">Start New Chat</button>
+            <button class="action-btn secondary" onclick="clearHistory()">Clear History</button>
+        </div>
+
+        <div class="stats" id="stats">
+            <h3>Usage Stats</h3>
+            <div class="stat-item">
+                <span class="stat-label">Explanations:</span>
+                <span class="stat-value" id="explanations-count">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Chat Messages:</span>
+                <span class="stat-value" id="chat-count">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Current Model:</span>
+                <span class="stat-value" id="current-model">OpenAI</span>
+            </div>
+        </div>
+
+        <div class="shortcuts">
+            <h3>Keyboard Shortcuts</h3>
+            <div class="shortcut-item">
+                <span>Open Chat:</span>
+                <span class="shortcut-key">Ctrl+Shift+E</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Close Sidebar:</span>
+                <span class="shortcut-key">Esc</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

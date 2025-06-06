@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ResearchMate History</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .history-item { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .item-header { font-weight: bold; margin-bottom: 10px; }
+        .item-time { float: right; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>ResearchMate History</h1>
+    <div id="history-container"></div>
+    <script>
+        // Load and display history
+        chrome.storage.local.get(['tempHistory'], (result) => {
+            const history = result.tempHistory || [];
+            const container = document.getElementById('history-container');
+            // Display history items
+            history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `
+                    <div class="item-header">
+                        ${item.type === 'explanation' ? 'Explanation' : 'Chat'}
+                        <span class="item-time">${new Date(item.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div>${item.type === 'explanation' ? item.text : item.query}</div>
+                `;
+                container.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
