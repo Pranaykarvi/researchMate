@@ -322,6 +322,16 @@ async def get_api_stats():
         "rate_limits": {k: len(v) for k, v in api_manager.rate_limits.items()}
     }
 
+@app.get("/")
+async def root():
+    return {
+        "message": "🎓 Welcome to ResearchMate API!",
+        "docs": "/docs",
+        "health_check": "/health",
+        "explain": "POST /explain",
+        "chat": "POST /chat"
+    }
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
