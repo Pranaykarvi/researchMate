@@ -25,18 +25,24 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Redis setup
+# Redis setup
 try:
-    redis_client = redis.Redis(
-        host=os.getenv('REDIS_HOST', 'localhost'),
-        port=int(os.getenv('REDIS_PORT', 6379)),
-        db=0,
-        decode_responses=True
-    )
+    redis_url = os.getenv('REDIS_URL')
+    if redis_url:
+        redis_client = redis.from_url(redis_url, decode_responses=True)
+    else:
+        redis_client = redis.Redis(
+            host=os.getenv('REDIS_HOST', 'localhost'),
+            port=int(os.getenv('REDIS_PORT', 6379)),
+            db=0,
+            decode_responses=True
+        )
     redis_client.ping()
     logger.info("Redis connected successfully")
-except:
-    logger.warning("Redis not available, using memory storage")
+except Exception as e:
+    logger.warning(f"Redis not available, using memory storage: {e}")
     redis_client = None
+
 
 memory_conversations = {}
 
@@ -320,6 +326,16 @@ async def get_api_stats():
         "current_provider": api_manager.current_provider,
         "quota_status": api_manager.quota_exceeded,
         "rate_limits": {k: len(v) for k, v in api_manager.rate_limits.items()}
+    }
+
+@app.get("/")
+async def root():
+    return {
+        "message": "🎓 Welcome to ResearchMate API!",
+        "docs": "/docs",
+        "health_check": "/health",
+        "explain": "POST /explain",
+        "chat": "POST /chat"
     }
 
 if __name__ == "__main__":
