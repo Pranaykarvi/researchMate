@@ -1,7 +1,7 @@
 // background.js - Service Worker for ResearchMate Chrome Extension
 
 // Configuration
-const API_BASE_URL = 'http://localhost:8000'; // Change to your production URL
+const API_BASE_URL = 'https://researchmate.onrender.com'; // Change to your production URL
 
 // Create context menu
 chrome.runtime.onInstalled.addListener(() => {
