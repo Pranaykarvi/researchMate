@@ -431,7 +431,11 @@ export default function LandingPage() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="mb-8">
               <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold">PK</span>
+                <img 
+                  src="/WhatsApp%20Image%202025-06-10%20at%2021.09.48_8f10f4dc.jpg" 
+                  alt="Pranay Karvi" 
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               <h2 className="text-3xl font-bold mb-4">Created by Pranay Karvi</h2>
               <p className="text-gray-400 text-lg mb-8">
