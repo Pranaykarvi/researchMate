@@ -437,7 +437,7 @@ export default function LandingPage() {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <h2 className="text-3xl font-bold mb-4">Created by Pranay Karvi</h2>
+              <h2 className="text-3xl font-bold mb-4">Created by Pranay Kumar Karvi</h2>
               <p className="text-gray-400 text-lg mb-8">
                 Passionate AI & research tool developer dedicated to making academic research more accessible and
                 efficient.
